@@ -49,7 +49,7 @@ export async function handler(event, context) {
     
             if (!result.ok) {
                 console.log(data);
-                throw new Error("Failed to get user access token");
+                throw new Error("Kan de gebruikerstoken niet ophalen");
             }
     
             const user = await getUserInfo(data.access_token);
@@ -57,7 +57,7 @@ export async function handler(event, context) {
                 return {
                     statusCode: 303,
                     headers: {
-                        "Location": `/error?msg=${encodeURIComponent("You cannot submit ban appeals with this Discord account.")}`,
+                        "Location": `/error?msg=${encodeURIComponent("Met dit Discord-account kun je geen Appeals doen op een ban.")}`,
                     },
                 };
             }
