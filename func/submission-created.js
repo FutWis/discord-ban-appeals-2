@@ -35,30 +35,30 @@ export async function handler(event, context) {
             return {
                 statusCode: 303,
                 headers: {
-                    "Location": `/error?msg=${encodeURIComponent("You cannot submit ban appeals with this Discord account.")}`,
+                    "Location": `/error?msg=${encodeURIComponent("Met dit Discord-account kun je geen Appeals versturen met een ban.")}`,
                 },
             };
         }
         
         const message = {
             embed: {
-                title: "New appeal submitted!",
+                title: "Nieuw Appeal Verstuurd!",
                 timestamp: new Date().toISOString(),
                 fields: [
                     {
-                        name: "Submitter",
+                        name: "Indiener",
                         value: `<@${userInfo.id}> (${userInfo.username}#${userInfo.discriminator})`
                     },
                     {
-                        name: "Why were you banned?",
+                        name: "Waarom ben je gebanned of gedempt?",
                         value: payload.banReason.slice(0, MAX_EMBED_FIELD_CHARS)
                     },
                     {
-                        name: "Why do you feel you should be unbanned?",
+                        name: "Waarom denk jij dat je geunbanned mag worden?",
                         value: payload.appealText.slice(0, MAX_EMBED_FIELD_CHARS)
                     },
                     {
-                        name: "What will you do to avoid being banned in the future?",
+                        name: "Wat doe jij in de toekomst om niet meer gebanned te worden?",
                         value: payload.futureActions.slice(0, MAX_EMBED_FIELD_CHARS)
                     }
                 ]
@@ -88,7 +88,7 @@ export async function handler(event, context) {
                     components: [{
                         type: 2,
                         style: 5,
-                        label: "Approve appeal and unban user",
+                        label: "Accepteer Appeal En Unban Gebruiker",
                         url: `${unbanUrl.toString()}?token=${encodeURIComponent(createJwt(unbanInfo))}`
                     }]
                 }];
@@ -119,7 +119,7 @@ export async function handler(event, context) {
             }
         } else {
             console.log(JSON.stringify(await result.json()));
-            throw new Error("Failed to submit message");
+            throw new Error("Kan bericht niet verzenden");
         }
     }
 
