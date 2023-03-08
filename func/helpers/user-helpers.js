@@ -14,7 +14,7 @@ export async function getUserInfo(token) {
 
     if (!result.ok) {
         console.log(data);
-        throw new Error("Failed to get user information");
+        throw new Error("Kan gebruikersgegevens niet ophalen");
     }
 
     return data;
@@ -38,7 +38,7 @@ export async function getBan(userId, guildId, botToken) {
         return null;
     } else {
         console.log(await result.json());
-        throw new Error("Failed to get user ban");
+        throw new Error("Kan geen gebruikers ban krijgen");
     }
 }
 
@@ -47,7 +47,7 @@ export async function unbanUser(userId, guildId, botToken) {
 
     if (!result.ok && result.status !== 404) {
         console.log(await result.json());
-        throw new Error("Failed to unban user");
+        throw new Error("Kan gebruiker niet unbannen");
     }
 }
 
