@@ -47,10 +47,6 @@ async function main() {
     // Make sure the bot connected to the gateway at least once.
     const bot = new Eris(process.env.DISCORD_BOT_TOKEN);
     bot.on("ready", () => bot.disconnect());
-
-    name: 'XottikMW On YouTube',
-    type: ActivityType.Watching,
-    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     
     try {
         await bot.connect();
